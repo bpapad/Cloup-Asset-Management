@@ -1,0 +1,18 @@
+body, html { 
+  background: url(images/clouds.jpg) no-repeat center center fixed; 
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
+  -webkit-font-smoothing: antialiased;
+}
+
+.main_container{
+	background-color: rgba(0,0,0,0.4);
+	width: 76%;
+        max-width:1150px;
+        height: 100%;
+        min-height: 100%;
+	margin-right: 12%;
+	margin-left: 12%;
+}
