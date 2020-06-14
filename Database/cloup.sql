@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Φιλοξενητής: 127.0.0.1
--- Χρόνος δημιουργίας: 10 Ιουν 2020 στις 22:25:56
+-- Χρόνος δημιουργίας: 15 Ιουν 2020 στις 00:58:34
 -- Έκδοση διακομιστή: 10.4.11-MariaDB
 -- Έκδοση PHP: 7.4.4
 
@@ -55,7 +55,7 @@ INSERT INTO `address_ergazomenou` (`odos`, `arithmos`, `polh`, `zip_code`, `kwd_
 ('staurou', '66', 'rodos', 23215, 11),
 ('minou', '9', 'rethimno', 12386, 12),
 ('stauropoulou', '99', 'ioaninna', 12353, 13),
-('Solonos', '130', 'athina', 17477, 56);
+('Sonos', '216', 'athina', 17477, 50);
 
 -- --------------------------------------------------------
 
@@ -74,20 +74,21 @@ CREATE TABLE `credentials` (
 --
 
 INSERT INTO `credentials` (`username`, `password`, `kwd_ergazom_cred`) VALUES
-('alexandros', 'kalogiannakis', 9),
-('andreas', 'geldis', 2),
-('antonis', 'thodos', 13),
-('basilhs', 'papadas', 56),
-('giannhs', 'sfendylakis', 8),
 ('giannis', 'karaiskos', 1),
-('grigoris', 'mastoras', 7),
+('andreas', 'geldis', 2),
 ('harris', 'vassilakopoulos', 3),
-('ioannis', 'morakos', 6),
-('konstantinos', 'lolos', 12),
-('manan', 'abdul', 5),
-('mixalhs', 'viskadourakhs', 10),
 ('oresths', 'papaemmanouhl', 4),
-('tasos', 'skordilakis', 11);
+('manan', 'abdul', 5),
+('ioannis', 'morakos', 6),
+('grigoris', 'mastoras', 7),
+('giannhs', 'sfendylakis', 8),
+('alexandros', 'kalogiannakis', 9),
+('mixalhs', 'viskadourakhs', 10),
+('tasos', 'skordilakis', 11),
+('konstantinos', 'lolos', 12),
+('antonis', 'thodos', 13),
+('basilhs', 'papadas', 50),
+('0', '0', 68);
 
 -- --------------------------------------------------------
 
@@ -106,7 +107,7 @@ CREATE TABLE `ekpaideysh` (
 
 INSERT INTO `ekpaideysh` (`kwd_ptyxio`, `per_ptyxiou`) VALUES
 (1, 'ECPE English'),
-(2, 'GERX Gerxedu'),
+(2, 'GERX GERXEDU'),
 (3, 'TTRI Ttriedu'),
 (4, 'MLTR mltrspanish '),
 (5, 'ERT erttv'),
@@ -136,7 +137,9 @@ CREATE TABLE `eksartomenos` (
 --
 
 INSERT INTO `eksartomenos` (`AMKA_eksart`, `Onoma_eksart`, `Eponymo_eksart`, `DOB_eksart`, `Fylo_eksart`, `kod_prostati`) VALUES
-(124532, 'Alikh', 'Papada', '2020-06-08', 'F', 56),
+(123, 'a', 'a', '0001-01-01', 'F', 68),
+(124532, 'Alikh', 'Papada', '2020-06-08', 'F', 50),
+(1111789, 'Anastasios', 'Papadas', '2020-06-30', 'M', 50),
 (1182940209, 'makakis', 'piou', '2019-08-05', 'F', 11),
 (1234567891, 'dimitris', 'dimitriou', '2018-02-05', 'M', 1),
 (1242497697, 'takis', 'papakis', '2019-12-17', 'M', 9),
@@ -170,7 +173,6 @@ CREATE TABLE `epimorfosh` (
 
 INSERT INTO `epimorfosh` (`ekpaideyomenos`, `eidikeysh`, `date_apokthshs`, `vathmos`) VALUES
 (5, 7, '2020-06-02', 10),
-(2, 1, '2020-06-03', 8),
 (5, 5, '2020-06-23', 9),
 (9, 3, '2020-06-15', 7),
 (1, 2, '2020-06-30', 10),
@@ -186,8 +188,8 @@ INSERT INTO `epimorfosh` (`ekpaideyomenos`, `eidikeysh`, `date_apokthshs`, `vath
 (13, 10, '2020-06-17', 9),
 (3, 7, '2020-06-16', 9),
 (10, 1, '2020-06-17', 9),
-(56, 1, '2020-06-16', 10),
-(56, 6, '2020-06-29', 10);
+(50, 1, '2020-06-16', 10),
+(50, 6, '2020-06-29', 10);
 
 -- --------------------------------------------------------
 
@@ -206,7 +208,6 @@ CREATE TABLE `ergazomenoi_se_erga` (
 --
 
 INSERT INTO `ergazomenoi_se_erga` (`kwd_ergou`, `kwd_ergazom_ergo`, `assigned_id`) VALUES
-(1, 5, 1),
 (1, 2, 2),
 (18, 6, 3),
 (19, 9, 4),
@@ -219,7 +220,8 @@ INSERT INTO `ergazomenoi_se_erga` (`kwd_ergou`, `kwd_ergazom_ergo`, `assigned_id
 (7, 13, 11),
 (20, 13, 12),
 (11, 7, 13),
-(13, 56, 15);
+(13, 50, 15),
+(1, 5, 16);
 
 -- --------------------------------------------------------
 
@@ -246,20 +248,21 @@ CREATE TABLE `ergazomenos` (
 --
 
 INSERT INTO `ergazomenos` (`kwd_ergazomenou`, `Eponymo_ergazom`, `Onoma_Ergazom`, `Patronymo_Ergazom`, `Fyllo_Ergaz`, `AFM_Ergaz`, `DOB_Ergazom`, `Tel_Ergaz`, `Salary_Ergazom`, `Kod_tm_ergazom`, `user_type_ergazom`) VALUES
-(1, 'KARAISKOS', 'GIANNIS', 'KARAISKOS', 'A', 111111111, '0000-00-00', 691111111, 1200, 1, 1),
-(2, 'GELDIS', 'ANDREAS', 'GELDIS', 'M', 111111112, '0000-00-00', 691111112, 900, 2, 2),
-(3, 'VASSILAKOPOULOS', 'HARRIS', 'VASSILAKOPOULOS', 'M', 111111113, '0000-00-00', 691111113, 200, 3, 2),
-(4, 'PAPAEMMANOUHL', 'ORESTHS', 'PAPAEMMANOUHL', 'M', 111111114, '0000-00-00', 691111114, 800, 4, 2),
-(5, 'ABDUL', 'MANAN', 'ABDUL', 'M', 111111115, '0000-00-00', 691111115, 850, 5, 2),
-(6, 'MORAKOS', 'IOANNIS', 'MORAKOS', 'M', 111111116, '0000-00-00', 691111116, 750, 6, 2),
-(7, 'MASTORAS', 'GRIGORIS', 'MASTORAS', 'M', 111111117, '0000-00-00', 691111117, 600, 7, 2),
-(8, 'SFENDYLAKIS', 'GIANNIS', 'SFENDYLAKIS', 'M', 111111118, '0000-00-00', 691111118, 1650, 8, 2),
-(9, 'KALOGIANNAKIS', 'ALEXANDROS', 'KALOGIANNAKIS', 'M', 111111119, '0000-00-00', 691111119, 1000, 9, 2),
-(10, 'VISKADOURAKHS', 'MIXALIS', 'VISKADOURAKHS', 'M', 111111120, '0000-00-00', 691111120, 360, 10, 2),
-(11, 'SKORDILAKIS', 'TASOS', 'SKORDILAKIS', 'M', 111111124, '0000-00-00', 691111124, 1500, 11, 2),
-(12, 'LOLOS', 'KONSTANTINOS', 'LOLOS', 'M', 111111123, '0000-00-00', 691111123, 740, 12, 2),
-(13, 'THODOS', 'ANTONIS', 'THODOS', 'M', 111111130, '0000-00-00', 691111129, 2150, 13, 1),
-(56, 'PAPADAS', 'BASILHS', 'ANASTASIOS', 'M', 1111111992, '2012-02-28', 134562123, 1500, 2, 1);
+(1, 'KARAISKOS', 'GIANNIS', 'KARAISKOS', 'A', 111111111, '2020-05-08', 691111111, 1200, 1, 1),
+(2, 'GELDIS', 'ANDREAS', 'GELDIS', 'M', 111111112, '2010-06-14', 691111112, 900, 2, 2),
+(3, 'VASSILAKOPOULOS', 'HARRIS', 'VASSILAKOPOULOS', 'M', 111111113, '2015-06-27', 691111113, 200, 3, 2),
+(4, 'PAPAEMMANOUHL', 'ORESTHS', 'PAPAEMMANOUHL', 'M', 111111114, '2000-06-26', 691111114, 800, 4, 2),
+(5, 'ABDUL', 'MANAN', 'ABDUL', 'M', 111111115, '1980-06-26', 691111115, 850, 5, 2),
+(6, 'MORAKOS', 'IOANNIS', 'MORAKOS', 'M', 111111116, '2015-06-25', 691111116, 750, 6, 2),
+(7, 'MASTORAS', 'GRIGORIS', 'MASTORAS', 'M', 111111117, '1992-06-24', 691111117, 600, 7, 2),
+(8, 'SFENDYLAKIS', 'GIANNIS', 'SFENDYLAKIS', 'M', 111111118, '2000-06-23', 691111118, 1650, 8, 2),
+(9, 'KALOGIANNAKIS', 'ALEXANDROS', 'KALOGIANNAKIS', 'M', 111111119, '2000-06-16', 691111119, 1000, 9, 2),
+(10, 'VISKADOURAKHS', 'MIXALIS', 'VISKADOURAKHS', 'M', 111111120, '2020-06-01', 691111120, 360, 10, 2),
+(11, 'SKORDILAKIS', 'TASOS', 'SKORDILAKIS', 'M', 111111124, '2019-11-13', 691111124, 1500, 11, 2),
+(12, 'LOLOS', 'KONSTANTINOS', 'LOLOS', 'M', 111111123, '2001-09-10', 691111123, 740, 12, 1),
+(13, 'THODOS', 'ANTONIS', 'THODOS', 'M', 111111130, '1999-03-19', 691111129, 2150, 13, 1),
+(50, 'Papadas', 'Vasileios', 'Anastasios', 'M', 12129898, '2020-06-02', 7809654, 1500, 9, 1),
+(68, 'Garage', 'Car', 'a', 'M', 0, '0001-01-01', 0, 0, 13, 2);
 
 -- --------------------------------------------------------
 
@@ -279,7 +282,7 @@ CREATE TABLE `ergo` (
 --
 
 INSERT INTO `ergo` (`kwd_ergou`, `perigrafh_ergou`, `finish_date`, `start_date`) VALUES
-(1, 'Eshop Ζαχαροπλαστείου', NULL, '2019-12-03'),
+(1, 'Eshop Zaxaroplasteioy', '2020-07-11', '2019-12-03'),
 (2, 'εξοπλισμός ιδιωτικού σχολείου Ψυχικού  με ηλεκτρονικούς υπολογιστές', '2020-05-14', '2020-06-03'),
 (3, 'ανάπτυξη εφαρμογής για το δικηγορικό γραφείο του Καιμακάμη', NULL, '2020-05-27'),
 (4, 'διαφήμιση για το νέο μοντέλο κινητού AL2020', '2020-06-01', '2020-06-10'),
@@ -320,6 +323,7 @@ CREATE TABLE `oxhma` (
 --
 
 INSERT INTO `oxhma` (`ar_kykloforias`, `xroma_oxhm`, `montelo_oxhm`, `marka_oxhm`, `odhgos`) VALUES
+('aaa1111', '1b', '1b', '1a', 68),
 ('DFP7428 ', 'Red ', 'C1', 'Citroen ', 11),
 ('DME1002 ', 'White ', 'TurboIQLXT', 'Polaris ', 12),
 ('EBF9239 ', 'Silver ', '3EX', 'Mazda ', 13),
@@ -333,7 +337,7 @@ INSERT INTO `oxhma` (`ar_kykloforias`, `xroma_oxhm`, `montelo_oxhm`, `marka_oxhm
 ('MHT1234 ', 'Black ', 'Polo', 'Volkswagen ', 3),
 ('OMN3476 ', 'Black ', 'Multipla', 'Fiat ', 2),
 ('PAP1363 ', 'Green ', 'Focus', 'Ford ', 1),
-('yzm5005', 'cC', 'Bravo', 'Fiat', 56);
+('yzm5005', 'cC', 'Bravo', 'Fiat', 50);
 
 -- --------------------------------------------------------
 
@@ -350,6 +354,7 @@ CREATE TABLE `syzygos` (
 --
 
 INSERT INTO `syzygos` (`AMKA_syzygou`) VALUES
+(123),
 (1242497697),
 (1254121239),
 (1254125234),
@@ -372,6 +377,7 @@ CREATE TABLE `tekno` (
 
 INSERT INTO `tekno` (`AMKA_teknou`) VALUES
 (124532),
+(1111789),
 (1234567891),
 (1249023918),
 (1284723242),
@@ -398,18 +404,18 @@ CREATE TABLE `tmhma` (
 
 INSERT INTO `tmhma` (`kwd_tmhmatos`, `onoma_tmhmatos`, `kwd_proistamenou`) VALUES
 (1, 'IT', 1),
-(2, 'ANAPTYJHS_LOGISMIKOY', 2),
+(2, 'Anaptykshs_Logismikoy', 2),
 (3, 'MARKETING', 3),
 (4, 'LOGISTIRIO', 4),
 (5, 'PARAGGELIVN', 5),
 (6, 'EFODIASMOU', 6),
 (7, 'THL_KENTRO', 7),
 (8, 'HR', 13),
-(9, 'PWLHSEWN', 8),
+(9, 'PWLHSEWN', 13),
 (10, 'OIKONOMIKO', 9),
 (11, 'NOMIKO', 10),
 (12, 'KATHARIOTHTAS', 12),
-(13, 'GRAMMATEIA', 11);
+(13, 'Grammateia', 13);
 
 -- --------------------------------------------------------
 
@@ -419,27 +425,35 @@ INSERT INTO `tmhma` (`kwd_tmhmatos`, `onoma_tmhmatos`, `kwd_proistamenou`) VALUE
 
 CREATE TABLE `tmhmata_se_erga` (
   `kwd_tmhmatos_ergou` int(11) DEFAULT NULL,
-  `kwd_ergou_tmhma` int(11) DEFAULT NULL,
-  `assignment_id` int(11) NOT NULL
+  `kwd_ergou_tmhma` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
 -- Άδειασμα δεδομένων του πίνακα `tmhmata_se_erga`
 --
 
-INSERT INTO `tmhmata_se_erga` (`kwd_tmhmatos_ergou`, `kwd_ergou_tmhma`, `assignment_id`) VALUES
-(2, 12, 1),
-(13, 11, 2),
-(6, 1, 3),
-(8, 21, 4),
-(8, 15, 5),
-(8, 16, 6),
-(1, 11, 7),
-(12, 20, 8),
-(4, 11, 9),
-(3, 4, 10),
-(11, 9, 11),
-(10, 7, 12);
+INSERT INTO `tmhmata_se_erga` (`kwd_tmhmatos_ergou`, `kwd_ergou_tmhma`) VALUES
+(1, 13),
+(1, 18),
+(2, 12),
+(3, 4),
+(3, 8),
+(4, 11),
+(4, 14),
+(5, 5),
+(5, 19),
+(6, 1),
+(7, 2),
+(7, 6),
+(8, 15),
+(8, 16),
+(8, 17),
+(8, 21),
+(10, 3),
+(10, 7),
+(11, 9),
+(11, 10),
+(12, 20);
 
 -- --------------------------------------------------------
 
@@ -474,7 +488,7 @@ ALTER TABLE `address_ergazomenou`
 -- Ευρετήρια για πίνακα `credentials`
 --
 ALTER TABLE `credentials`
-  ADD PRIMARY KEY (`username`),
+  ADD PRIMARY KEY (`kwd_ergazom_cred`),
   ADD KEY `kwd_ergazom_cred` (`kwd_ergazom_cred`);
 
 --
@@ -494,8 +508,8 @@ ALTER TABLE `eksartomenos`
 -- Ευρετήρια για πίνακα `epimorfosh`
 --
 ALTER TABLE `epimorfosh`
-  ADD KEY `ekpaideyomenos` (`ekpaideyomenos`),
-  ADD KEY `eidikeysh` (`eidikeysh`);
+  ADD KEY `epimorfosh_ibfk_1` (`ekpaideyomenos`),
+  ADD KEY `epimorfosh_ibfk_2` (`eidikeysh`);
 
 --
 -- Ευρετήρια για πίνακα `ergazomenoi_se_erga`
@@ -549,7 +563,7 @@ ALTER TABLE `tmhma`
 -- Ευρετήρια για πίνακα `tmhmata_se_erga`
 --
 ALTER TABLE `tmhmata_se_erga`
-  ADD PRIMARY KEY (`assignment_id`),
+  ADD PRIMARY KEY (`kwd_ergou_tmhma`),
   ADD KEY `kwd_tmhmatos_ergou` (`kwd_tmhmatos_ergou`),
   ADD KEY `kwd_ergou_tmhma` (`kwd_ergou_tmhma`);
 
@@ -567,7 +581,7 @@ ALTER TABLE `user_type`
 -- AUTO_INCREMENT για πίνακα `ekpaideysh`
 --
 ALTER TABLE `ekpaideysh`
-  MODIFY `kwd_ptyxio` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=17;
+  MODIFY `kwd_ptyxio` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=18;
 
 --
 -- AUTO_INCREMENT για πίνακα `eksartomenos`
@@ -579,31 +593,25 @@ ALTER TABLE `eksartomenos`
 -- AUTO_INCREMENT για πίνακα `ergazomenoi_se_erga`
 --
 ALTER TABLE `ergazomenoi_se_erga`
-  MODIFY `assigned_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;
+  MODIFY `assigned_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=17;
 
 --
 -- AUTO_INCREMENT για πίνακα `ergazomenos`
 --
 ALTER TABLE `ergazomenos`
-  MODIFY `kwd_ergazomenou` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=61;
+  MODIFY `kwd_ergazomenou` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=69;
 
 --
 -- AUTO_INCREMENT για πίνακα `ergo`
 --
 ALTER TABLE `ergo`
-  MODIFY `kwd_ergou` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=25;
+  MODIFY `kwd_ergou` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=26;
 
 --
 -- AUTO_INCREMENT για πίνακα `tmhma`
 --
 ALTER TABLE `tmhma`
-  MODIFY `kwd_tmhmatos` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
-
---
--- AUTO_INCREMENT για πίνακα `tmhmata_se_erga`
---
-ALTER TABLE `tmhmata_se_erga`
-  MODIFY `assignment_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;
+  MODIFY `kwd_tmhmatos` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;
 
 --
 -- Περιορισμοί για άχρηστους πίνακες
@@ -625,34 +633,34 @@ ALTER TABLE `credentials`
 -- Περιορισμοί για πίνακα `eksartomenos`
 --
 ALTER TABLE `eksartomenos`
-  ADD CONSTRAINT `eksartomenos_ibfk_1` FOREIGN KEY (`kod_prostati`) REFERENCES `ergazomenos` (`kwd_ergazomenou`) ON DELETE NO ACTION ON UPDATE CASCADE;
+  ADD CONSTRAINT `eksartomenos_ibfk_1` FOREIGN KEY (`kod_prostati`) REFERENCES `ergazomenos` (`kwd_ergazomenou`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
 -- Περιορισμοί για πίνακα `epimorfosh`
 --
 ALTER TABLE `epimorfosh`
-  ADD CONSTRAINT `epimorfosh_ibfk_1` FOREIGN KEY (`ekpaideyomenos`) REFERENCES `ergazomenos` (`kwd_ergazomenou`) ON DELETE NO ACTION ON UPDATE CASCADE,
-  ADD CONSTRAINT `epimorfosh_ibfk_2` FOREIGN KEY (`eidikeysh`) REFERENCES `ekpaideysh` (`kwd_ptyxio`) ON DELETE NO ACTION ON UPDATE CASCADE;
+  ADD CONSTRAINT `epimorfosh_ibfk_1` FOREIGN KEY (`ekpaideyomenos`) REFERENCES `ergazomenos` (`kwd_ergazomenou`) ON DELETE CASCADE ON UPDATE CASCADE,
+  ADD CONSTRAINT `epimorfosh_ibfk_2` FOREIGN KEY (`eidikeysh`) REFERENCES `ekpaideysh` (`kwd_ptyxio`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
 -- Περιορισμοί για πίνακα `ergazomenoi_se_erga`
 --
 ALTER TABLE `ergazomenoi_se_erga`
-  ADD CONSTRAINT `ergazomenoi_se_erga_ibfk_1` FOREIGN KEY (`kwd_ergou`) REFERENCES `ergo` (`kwd_ergou`) ON DELETE NO ACTION ON UPDATE CASCADE,
-  ADD CONSTRAINT `ergazomenoi_se_erga_ibfk_2` FOREIGN KEY (`kwd_ergazom_ergo`) REFERENCES `ergazomenos` (`kwd_ergazomenou`) ON DELETE NO ACTION ON UPDATE CASCADE;
+  ADD CONSTRAINT `ergazomenoi_se_erga_ibfk_1` FOREIGN KEY (`kwd_ergou`) REFERENCES `ergo` (`kwd_ergou`) ON DELETE CASCADE ON UPDATE CASCADE,
+  ADD CONSTRAINT `ergazomenoi_se_erga_ibfk_2` FOREIGN KEY (`kwd_ergazom_ergo`) REFERENCES `ergazomenos` (`kwd_ergazomenou`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
 -- Περιορισμοί για πίνακα `ergazomenos`
 --
 ALTER TABLE `ergazomenos`
-  ADD CONSTRAINT `ergazomenos_ibfk_2` FOREIGN KEY (`user_type_ergazom`) REFERENCES `user_type` (`user_type_id`) ON DELETE NO ACTION ON UPDATE CASCADE,
-  ADD CONSTRAINT `ergazomenos_ibfk_3` FOREIGN KEY (`Kod_tm_ergazom`) REFERENCES `tmhma` (`kwd_tmhmatos`) ON DELETE NO ACTION ON UPDATE CASCADE;
+  ADD CONSTRAINT `ergazomenos_ibfk_3` FOREIGN KEY (`Kod_tm_ergazom`) REFERENCES `tmhma` (`kwd_tmhmatos`) ON DELETE SET NULL ON UPDATE CASCADE,
+  ADD CONSTRAINT `ergazomenos_ibfk_4` FOREIGN KEY (`user_type_ergazom`) REFERENCES `user_type` (`user_type_id`) ON DELETE NO ACTION ON UPDATE CASCADE;
 
 --
 -- Περιορισμοί για πίνακα `oxhma`
 --
 ALTER TABLE `oxhma`
-  ADD CONSTRAINT `oxhma_ibfk_1` FOREIGN KEY (`odhgos`) REFERENCES `ergazomenos` (`kwd_ergazomenou`) ON DELETE NO ACTION ON UPDATE CASCADE;
+  ADD CONSTRAINT `oxhma_ibfk_1` FOREIGN KEY (`odhgos`) REFERENCES `ergazomenos` (`kwd_ergazomenou`) ON DELETE SET NULL ON UPDATE CASCADE;
 
 --
 -- Περιορισμοί για πίνακα `syzygos`
@@ -670,14 +678,14 @@ ALTER TABLE `tekno`
 -- Περιορισμοί για πίνακα `tmhma`
 --
 ALTER TABLE `tmhma`
-  ADD CONSTRAINT `tmhma_ibfk_1` FOREIGN KEY (`kwd_proistamenou`) REFERENCES `ergazomenos` (`kwd_ergazomenou`) ON DELETE NO ACTION ON UPDATE CASCADE;
+  ADD CONSTRAINT `tmhma_ibfk_1` FOREIGN KEY (`kwd_proistamenou`) REFERENCES `ergazomenos` (`kwd_ergazomenou`) ON DELETE SET NULL ON UPDATE CASCADE;
 
 --
 -- Περιορισμοί για πίνακα `tmhmata_se_erga`
 --
 ALTER TABLE `tmhmata_se_erga`
-  ADD CONSTRAINT `tmhmata_se_erga_ibfk_1` FOREIGN KEY (`kwd_tmhmatos_ergou`) REFERENCES `tmhma` (`kwd_tmhmatos`) ON DELETE NO ACTION ON UPDATE CASCADE,
-  ADD CONSTRAINT `tmhmata_se_erga_ibfk_2` FOREIGN KEY (`kwd_ergou_tmhma`) REFERENCES `ergo` (`kwd_ergou`) ON DELETE NO ACTION ON UPDATE CASCADE;
+  ADD CONSTRAINT `tmhmata_se_erga_ibfk_1` FOREIGN KEY (`kwd_tmhmatos_ergou`) REFERENCES `tmhma` (`kwd_tmhmatos`) ON DELETE CASCADE ON UPDATE CASCADE,
+  ADD CONSTRAINT `tmhmata_se_erga_ibfk_2` FOREIGN KEY (`kwd_ergou_tmhma`) REFERENCES `ergo` (`kwd_ergou`) ON DELETE CASCADE ON UPDATE CASCADE;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

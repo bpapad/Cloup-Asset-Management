@@ -199,7 +199,7 @@
                                 <td></td>
                                 <td></td>
                                 <td></td>
-                                <td><?php echo $occupant['Eponymo_ergazom']." ".$occupant['Onoma_Ergazom']?></td>
+                                <td><?php echo $occupant['Eponymo_ergazom']." ".$occupant['Onoma_Ergazom']." - ".$occupant['AFM_Ergaz']?></td>
                                 </tr>
                             <?php } ?>
                             <tr>
@@ -403,10 +403,11 @@
             
         </div>
                         
-        <div class="button_cont center-text" align="center">
-            <a class="example_a" href="add_or_change.php">Manage Assets</a>
+        <div class="button_cont text-left-right" align="center">
+            <a class="example_a left-text" href="general_edit.php">General Control</a>
+            <a class="example_a right-text" href="target_edit.php">Target Search</a>
         </div>
-        
+        <hr>
         <div class="button_cont text-left-right" align="center">
             <a class="example_a left-text" href="logged_in_page.php">Back to Profile</a>
             <a class="example_a right-text" href="logout.php">LOGOUT</a>
