@@ -32,7 +32,6 @@
 
 </head>
 <body>
-    <!-- <a class="example_a right-text" href="logout.php">LOGOUT</a> -->   <!--Failsafe session_unset tag in case a bug appeared-->
     <h1>Cloup Industries</h1>
     <div class="main_container">
         <div>
@@ -241,7 +240,7 @@
                         unset($_SESSION['temp_password']);                      //they get deleted so that they can be used again in the same session. Page reloads right after this
                         unset($_SESSION['temp_afm']);?>
                         <script>alert('Employee Added!');</script>
-                        <script> location.replace("add_or_change.php"); </script>  <!-- doing it this way so that the form stays visible (right after pressing the button the data get hendled and the form disappears) -->
+                        <script> location.replace("general_edit.php"); </script>  <!-- doing it this way so that the form stays visible (right after pressing the button the data get hendled and the form disappears) -->
                     <?php }?>
 
                 </form>                                                         <!-- ADD EMPLOYEE FORM ENDS HERE -->
@@ -291,7 +290,7 @@
                     if(filter_input(INPUT_POST, 'DelUser')){                    //deleting the "pressed" delete button and reloading tha page right after deleting the chosen employee
                         unset($_POST["DelUser"]);?>                             <!-- doing it this way so that the form stays visible (right after pressing the button the data get hendled and the form disappears) -->
                         <script>alert('Employee Deleted!');</script>
-                        <script> location.replace("add_or_change.php"); </script>
+                        <script> location.replace("general_edit.php"); </script>
                     <?php }?>
                 </form>                                                         <!-- DELETE EMPLOYEE FORM ENDS HERE -->
                 
@@ -349,7 +348,7 @@
                     if(filter_input(INPUT_POST, 'AddDepartment')){
                         unset($_POST['AddDepartment']);?>
                         <script>alert('Department Added!');</script>
-                        <script> location.replace("add_or_change.php"); </script>
+                        <script> location.replace("general_edit.php"); </script>
                     <?php }?>
                 </form>                                                         <!-- ADD DEPARTMENT FORM ENDS HERE -->                                             
                 
@@ -415,7 +414,7 @@
                 if(filter_input(INPUT_POST, 'AddProject')){
                     unset($_POST['AddProject']);?>
                     <script>alert('Project Added!');</script>
-                    <script> location.replace("add_or_change.php"); </script>
+                    <script> location.replace("general_edit.php"); </script>
                 <?php }?>
                     
                 </form>                                                         <!-- ADD PROJECT FORM ENDS HERE -->
@@ -471,7 +470,7 @@
                 }if(filter_input(INPUT_POST, 'AssignDpt')){
                     unset($_POST['AssignDpt']);?>
                     <script>alert('Project Assigned!');</script>
-                    <script> location.replace("add_or_change.php"); </script>
+                    <script> location.replace("general_edit.php"); </script>
                 <?php }?>
                         
                 </form>                                                         <!-- ASSIGN PROJECT TO DEPARTMENT FORM ENDS HERE -->                                             
@@ -528,7 +527,7 @@
                 }if(filter_input(INPUT_POST, 'AssignEmp')){
                     unset($_POST['AssignEmp']);?>
                     <script>alert('Project Assigned!');</script>
-                    <script> location.replace("add_or_change.php"); </script>
+                    <script> location.replace("general_edit.php"); </script>
                 <?php }?>
                         
                 </form>                                                         <!-- ASSIGN PROJECT TO EMPLOYEE FORM ENDS HERE -->
@@ -615,7 +614,7 @@
                     }if(filter_input(INPUT_POST, 'AddCar')){
                     unset($_POST['AddCar']);?>
                     <script>alert('Vehicle Added!');</script>
-                    <script> location.replace("add_or_change.php"); </script>
+                    <script> location.replace("general_edit.php"); </script>
                 <?php }?>
                 
                 </form>                                                         <!-- ADD VEHICLE FORM ENDS HERE -->
@@ -666,7 +665,7 @@
                     }if(filter_input(INPUT_POST, 'DelCar')){
                     unset($_POST['DelCar']);?>
                     <script>alert('Vehicle Deleted!');</script>
-                    <script> location.replace("add_or_change.php"); </script>
+                    <script> location.replace("general_edit.php"); </script>
                 <?php }?>
                 
                 </form>                                                         <!-- DELETE VEHICLE FORM ENDS HERE -->
@@ -709,7 +708,7 @@
                     }if(filter_input(INPUT_POST, 'AddDip')){
                     unset($_POST['AddDip']);?>
                     <script>alert('Diploma Added!');</script>
-                    <script> location.replace("add_or_change.php"); </script>
+                    <script> location.replace("general_edit.php"); </script>
                     
                 <?php }?>
                 
@@ -788,7 +787,7 @@
                     }if(filter_input(INPUT_POST, 'AssignD')){
                     unset($_POST['AssignD']);?>
                     <script>alert('Diploma Added!');</script>
-                    <script> location.replace("add_or_change.php"); </script>
+                    <script> location.replace("general_edit.php"); </script>
                     
                 <?php }?>
                 
@@ -874,7 +873,7 @@
                     }if(filter_input(INPUT_POST, 'AddAdr')){
                     unset($_POST['AddAdr']);?>
                     <script>alert('Address Added!');</script>
-                    <script> location.replace("add_or_change.php"); </script>
+                    <script> location.replace("general_edit.php"); </script>
                 <?php }?>
                 
                 </form>
@@ -925,7 +924,7 @@
                     }if(filter_input(INPUT_POST, 'DelAdr')){
                     unset($_POST['DelAdr']);?>
                     <script>alert('Address Deleted!');</script>
-                    <script> location.replace("add_or_change.php"); </script>
+                    <script> location.replace("general_edit.php"); </script>
                 <?php }?>
                 
                 </form>                                                         <!-- DELETE ADDRESS FORM ENDS HERE -->
@@ -1039,7 +1038,7 @@
                     }if(filter_input(INPUT_POST, 'AddDep')){
                     unset($_POST['AddDep']);?>
                     <script>alert('Dependant Added!');</script>
-                    <script> location.replace("add_or_change.php"); </script>
+                    <script> location.replace("general_edit.php"); </script>
                 <?php }?>
                 
                 </form>                                                         <!-- ADD DEPENDANT FORM ENDS HERE -->
@@ -1089,7 +1088,7 @@
                     }if(filter_input(INPUT_POST, 'DelDep')){
                     unset($_POST['DelDep']);?>
                     <script>alert('Dependant Deleted!');</script>
-                    <script> location.replace("add_or_change.php"); </script>
+                    <script> location.replace("general_edit.php"); </script>
                 <?php }?>
                 
                 </form>                                                         <!-- DELETE DEPENDANT FORM ENDS HERE -->
@@ -1105,12 +1104,11 @@
         <div class="button_cont center-text" align="center">
             <a class="example_a" href="asset_management.php">Back to Assets</a>
         </div>
+        <hr>
         <div class="button_cont text-left-right" align="center">
             <a class="example_a left-text" href="logged_in_page.php">Back to Profile</a>
             <a class="example_a right-text" href="logout.php">LOGOUT</a>
-        </div>
-
-    <!-- Playground.. maybe? -->    
+        </div>   
 
     </div>
 </body>

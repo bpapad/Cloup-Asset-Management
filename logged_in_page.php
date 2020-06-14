@@ -49,7 +49,29 @@
             </h3>
             <hr class="split">
 	</div>
-				
+            
+        <?php
+            $searchBDay = new Database();
+            if($searchBDay->isbirthday()) { ?>
+            <h2>Today's Birthdays!</h2>
+                <div class="table-wrapper">
+                    <table class="fl-table">  
+                        <thead>
+                            <tr>
+                                <th>Celebrator</th>
+                                <th>Address</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                                <?php $searchBDay->birthday($_SESSION['DOB_Ergazom']); ?>
+                        </tbody>
+                    </table>
+                </div>
+            <?php } ?>                                
+        
+        
+        
+        
 		<div class="tab-wrap">
 		
 			<input type="radio" id="tab1" name="tabGroup1" class="tab" checked>
@@ -112,6 +134,7 @@
 			<div class="tab__content">
                             
                             <?php 
+                                $DB = new Database();
                                 $dpt = new Tmhma();
                                 $dpt->setID($_SESSION['Kod_tm_ergazom']);
                                 $dpt->getDepartment();
@@ -132,7 +155,7 @@
                                     <tr>                         <!-- Gemisma pinaka me ta dedomena tou xrhsth apo to session -->
                                         <td><?php echo $_SESSION['Kod_tm_ergazom']?></td>
                                         <td><?php echo $dpt->onoma_tmhmatos?></td>
-                                        <td><?php $dpt->findSupervisor($_SESSION['kwd_ergazomenou'])?></td>
+                                        <td><?php echo ($_SESSION['kwd_ergazomenou'] == $dpt->kwd_proistamenou)?"Self":$DB->findSupervisor($dpt->kwd_proistamenou)?></td>
                                         <td><?php echo $dpt->kwd_proistamenou?></td>
                                     </tr>
                                     <tbody>
@@ -311,7 +334,7 @@
                                             for($i=0; $i<sizeof($eksart->AMKA_eksart); $i++){ ?>
                                             <tr>
                                                 <td><?php echo $eksart->AMKA_eksart[$i] ?></td>
-                                                <td><?php echo $eksart->Onoma_eksart ?></td>
+                                                <td><?php echo $eksart->Onoma_eksart[$i] ?></td>
                                                 <td><?php echo $eksart->Eponymo_eksart[$i] ?></td>
                                                 <td><?php echo $eksart->Fylo_eksart[$i] ?></td>
                                                 <td><?php echo $eksart->DOB_eksart[$i] ?></td>
@@ -341,8 +364,6 @@
             <?php }?>
             <a class="example_a right-text" href="logout.php">LOGOUT</a>
         </div>
-        
-        
     </div>
 	
 </body>

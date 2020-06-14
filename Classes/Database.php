@@ -74,13 +74,14 @@ class Database
     
     //fetching a departments name and supervisor using the given department_id
     function getDepartment(&$O){
-        $sql = "SELECT tmhma.onoma_tmhmatos, tmhma.kwd_proistamenou FROM tmhma WHERE tmhma.kwd_tmhmatos = ? ;";
+        $sql = "SELECT tmhma.kwd_tmhmatos, tmhma.onoma_tmhmatos, tmhma.kwd_proistamenou FROM tmhma WHERE tmhma.kwd_tmhmatos = ? ;";
         $this->connect();
         $res = $this->execute($sql, [$O->kwd_tmhmatos]);
         if ($res->rowCount() == 1){
             $row = $res->fetch();
             $O->onoma_tmhmatos = $row['onoma_tmhmatos'];
-            $O->kwd_proistamenou = $row['kwd_proistamenou'];   
+            $O->kwd_proistamenou = $row['kwd_proistamenou'];
+            $O->kwd_tmhmatos = $row['kwd_tmhmatos'];
         }
     }
     
@@ -315,7 +316,7 @@ class Database
     //fetches first and last names of all the employees currently deployed in the project provided (project_id)
     function getAssignedEmployees($proj_id){
         Database::$count = 0;
-        $sql = "SELECT ergazomenos.Onoma_Ergazom, ergazomenos.Eponymo_ergazom FROM ergazomenos JOIN ergazomenoi_se_erga ON ergazomenos.kwd_ergazomenou = ergazomenoi_se_erga.kwd_ergazom_ergo JOIN ergo ON ergazomenoi_se_erga.kwd_ergou = ergo.kwd_ergou WHERE ergo.kwd_ergou = ? ;";
+        $sql = "SELECT ergazomenos.Onoma_Ergazom, ergazomenos.Eponymo_ergazom, ergazomenos.AFM_Ergaz FROM ergazomenos JOIN ergazomenoi_se_erga ON ergazomenos.kwd_ergazomenou = ergazomenoi_se_erga.kwd_ergazom_ergo JOIN ergo ON ergazomenoi_se_erga.kwd_ergou = ergo.kwd_ergou WHERE ergo.kwd_ergou = ? ;";
         $this->connect();
         $res = $this->execute($sql, [$proj_id]);
         $rows = $res->fetchAll();
@@ -394,10 +395,14 @@ class Database
     
     //fills a table with all the Insured under the given epmloyee_id
     function getAllInsured($ins_id){
+        Database::$count = 0;
         $sql = "SELECT eksartomenos.AMKA_eksart, eksartomenos.Onoma_eksart, eksartomenos.Eponymo_eksart, eksartomenos.DOB_eksart, eksartomenos.Fylo_eksart FROM eksartomenos JOIN ergazomenos ON eksartomenos.kod_prostati = ergazomenos.kwd_ergazomenou WHERE eksartomenos.kod_prostati = ? ;";
         $this->connect();
         $res = $this->execute($sql, [$ins_id]);
         $rows = $res->fetchAll();
+        foreach ($rows as $row){
+            Database::$count++;
+        }
         return $rows;
     }
 
@@ -671,6 +676,269 @@ class Database
             echo "<option value='".$row['AMKA_eksart']."'>".$row['AMKA_eksart']." - ".$row['Onoma_eksart']. " ".$row['Eponymo_eksart']."  -  ".$insurer['Onoma_Ergazom']." ".$insurer['Eponymo_ergazom']."</option>";
         }
     }
-
+    
+    function targetSearchEmployee($sql){
+        $this->connect();
+        $res = $this->execute($sql, []);
+        $rows = $res->fetchAll();
+        return $rows;
+    }
+    
+    function getErgazomeno($id){
+        $sql = "SELECT kwd_ergazomenou, Eponymo_ergazom, Onoma_Ergazom, Patronymo_Ergazom, Fyllo_Ergaz, AFM_Ergaz, DOB_Ergazom, Tel_Ergaz, Salary_Ergazom, Kod_tm_ergazom, user_type_ergazom FROM ergazomenos WHERE kwd_ergazomenou = ? ;";
+        $this->connect();
+        $res = $this->execute($sql, [$id]);
+        $row = $res->fetch();
+        return $row;
+    }
+    
+    function getMyDpt($id){
+        $sql = "SELECT tmhma.onoma_tmhmatos FROM tmhma JOIN ergazomenos ON ergazomenos.Kod_tm_ergazom  = tmhma.kwd_tmhmatos  WHERE ergazomenos.kwd_ergazomenou = ? ;";
+        $this->connect();
+        $res = $this->execute($sql, [$id]);
+        $row = $res->fetch();
+        echo $row['onoma_tmhmatos'];
+    }
+    
+    function getMyUtype($Uid){
+        $sql = "SELECT user_type.user_type_name FROM  user_type JOIN ergazomenos ON ergazomenos.user_type_ergazom = user_type.user_type_id WHERE user_type.user_type_id = ? ;";
+        $this->connect();
+        $res = $this->execute($sql, [$Uid]);
+        $row = $res->fetch();
+        echo $row['user_type_name'];
+    }
+    
+    function updateErgazomeno($sql){
+        $this->connect();
+        $res = $this->execute($sql, []);
+    }
+    
+    function targetSearchDepartment($sql){
+        $this->connect();
+        $res = $this->execute($sql, []);
+        $rows = $res->fetchAll();
+        return $rows;
+    }
+    
+    function updateTmhma($sql){
+        $this->connect();
+        $res = $this->execute($sql, []);
+    }
+    
+    function delDepartment($dpt_id){
+        $sql1 = "DELETE FROM tmhma WHERE kwd_tmhmatos = ? ;";
+        $this->connect();
+        $res = $this->execute($sql1, [$dpt_id]);
+    }
+    
+    function targetSearchProject($sql){
+        $this->connect();
+        $res = $this->execute($sql, []);
+        $rows = $res->fetchAll();
+        return $rows;
+    }
+    
+    function delProject($proj_id){
+        $sql1 = "DELETE FROM ergo WHERE kwd_ergou = ? ;";
+        $this->connect();
+        $res = $this->execute($sql1, [$proj_id]);
+    }
+    
+    function get_Target_Ergo($proj_id){
+        $sql = "SELECT kwd_ergou, perigrafh_ergou, start_date, finish_date FROM ergo WHERE kwd_ergou = ? ;";
+        $this->connect();
+        $res = $this->execute($sql, [$proj_id]);
+        $row = $res->fetch();
+        return $row;
+    }
+    
+    function updateErgo($sql){
+       $this->connect();
+       $res = $this->execute($sql, []); 
+    }
+    
+    function delete_ergazomeno_from_ergo($sql){
+       $this->connect();
+       $res = $this->execute($sql, []); 
+    }
+    
+    function assign_ergazomeno_to_ergo($sql){
+       $this->connect();
+       $res = $this->execute($sql, []); 
+    }
+    
+    function printAssignedEmployees($proj_id){
+        $sql = "SELECT ergazomenos.Onoma_Ergazom, ergazomenos.Eponymo_ergazom, ergazomenos.kwd_ergazomenou FROM ergazomenos JOIN ergazomenoi_se_erga ON ergazomenos.kwd_ergazomenou = ergazomenoi_se_erga.kwd_ergazom_ergo JOIN ergo ON ergazomenoi_se_erga.kwd_ergou = ergo.kwd_ergou WHERE ergo.kwd_ergou = ? GROUP BY ergazomenos.kwd_ergazomenou ;";
+        $this->connect();
+        $res = $this->execute($sql, [$proj_id]);
+        $rows = $res->fetchAll();
+        foreach($rows as $row){
+            echo "<option value='".$row['kwd_ergazomenou']."'>".$row['kwd_ergazomenou']." - ".$row['Onoma_Ergazom']."  ".$row['Eponymo_ergazom']."</option>";
+        }
+    }
+    
+    function printNonAssignedEmployees($proj_id){
+        $sql = "SELECT ergazomenos.Onoma_Ergazom, ergazomenos.Eponymo_ergazom, ergazomenos.kwd_ergazomenou FROM ergazomenos JOIN ergazomenoi_se_erga ON ergazomenos.kwd_ergazomenou = ergazomenoi_se_erga.kwd_ergazom_ergo JOIN ergo ON ergazomenoi_se_erga.kwd_ergou = ergo.kwd_ergou WHERE ergo.kwd_ergou != ? GROUP BY ergazomenos.kwd_ergazomenou ;";
+        $this->connect();
+        $res = $this->execute($sql, [$proj_id]);
+        $rows = $res->fetchAll();
+        foreach($rows as $row){
+            echo "<option value='".$row['kwd_ergazomenou']."'>".$row['Onoma_Ergazom']." - ".$row['Eponymo_ergazom']."</option>";
+        }
+    }
+    
+    function change_proj_dpt_assign($sql){
+        $this->connect();
+        $res2 = $this->execute($sql, []);
+    }
+    
+    function findSupervisorCar($sup_id){
+        $sql = "SELECT ar_kykloforias FROM oxhma WHERE odhgos = ? ;";
+        $this->connect();
+        $res = $this->execute($sql, [$sup_id]);
+        $row = $res->fetch();
+        echo $row['ar_kykloforias']??"No Car";
+    }
+    
+    function targetSearchCar($sql){
+        $this->connect();
+        $res = $this->execute($sql, []);
+        $rows = $res->fetchAll();
+        return $rows;
+    }
+    
+    function get_editedCar($car_id){
+        $sql = "SELECT ar_kykloforias , xroma_oxhm, montelo_oxhm, marka_oxhm, odhgos FROM oxhma WHERE ar_kykloforias = ? ;";
+        $this->connect();
+        $res = $this->execute($sql, [$car_id]);
+        $row = $res->fetch();
+        return $row;
+    }
+    
+    function updateCar($sql){
+       $this->connect();
+       $res = $this->execute($sql, []);
+    }
+    
+    function targetSearchDiploma($sql){
+       $this->connect();
+       $res = $this->execute($sql, []);
+       $rows = $res->fetchAll();
+       return $rows;
+    }
+    
+    function delDiploma($dip_id){
+        $sql1 = "DELETE FROM ekpaideysh WHERE kwd_ptyxio = ? ;";
+        $this->connect();
+        $res = $this->execute($sql1, [$dip_id]);
+    }
+    
+    function getDiplomaData($dip_id){
+        $sql = "SELECT kwd_ptyxio, per_ptyxiou FROM ekpaideysh WHERE kwd_ptyxio = ?";
+        $this->connect();
+        $res = $this->execute($sql, [$dip_id]);
+        $rows = $res->fetch();
+        return $rows;
+    }
+    
+    function updateDiploma($sql){
+        $this->connect();
+        $res = $this->execute($sql, []);
+    }
+    
+    function get_targetdip_holders($dip_id){
+        $sql = "SELECT ergazomenos.Eponymo_ergazom, ergazomenos.Onoma_Ergazom, ergazomenos.kwd_ergazomenou FROM ergazomenos JOIN epimorfosh ON epimorfosh.ekpaideyomenos = ergazomenos.kwd_ergazomenou JOIN ekpaideysh ON epimorfosh.eidikeysh = ekpaideysh.kwd_ptyxio WHERE ekpaideysh.kwd_ptyxio = ? ;";
+        $this->connect();
+        $res = $this->execute($sql, [$dip_id]);
+        $rows = $res->fetchAll();
+        foreach($rows as $row){
+            echo "<option value='".$row['kwd_ergazomenou']."'>".$row['kwd_ergazomenou']. " - ".$row['Onoma_Ergazom']."  ".$row['Eponymo_ergazom']."</option>";
+        }
+    }
+    
+    function remove_DipHolder($dip_holder, $dip_id){
+        $sql1 = "DELETE FROM epimorfosh WHERE ekpaideyomenos  = ? AND eidikeysh = ? ;";
+        $this->connect();
+        $res = $this->execute($sql1, [$dip_holder, $dip_id]);
+    }
+    
+    function updateAddress($sql){
+        $this->connect();
+        $res = $this->execute($sql, []);
+    }
+    
+    function targetSearchDependant($sql){
+        $this->connect();
+        $res = $this->execute($sql, []);
+        $rows = $res->fetchAll();
+        return $rows;
+    }
+    
+    function target_dep_insurer($dependant_id){
+        $sql = "SELECT ergazomenos.Onoma_Ergazom, ergazomenos.Eponymo_ergazom FROM ergazomenos JOIN eksartomenos ON ergazomenos.kwd_ergazomenou = eksartomenos.kod_prostati WHERE eksartomenos.kod_prostati = ? ;";
+        $this->connect();
+        $res = $this->execute($sql, [$dependant_id]);
+        $row = $res->fetch();
+        echo $row['Onoma_Ergazom']." ".$row['Eponymo_ergazom'];
+    }
+    
+    function get_editedDep($dependant_id){
+        $sql = "SELECT AMKA_eksart, Onoma_eksart, Eponymo_eksart, DOB_eksart, Fylo_eksart , kod_prostati FROM eksartomenos WHERE AMKA_eksart = ?";
+        $this->connect();
+        $res = $this->execute($sql, [$dependant_id]);
+        $row = $res->fetch();
+        return $row; 
+    }
+    
+    function updateDependant($sql){
+        $this->connect();
+        $res = $this->execute($sql, []);
+    }
+    
+    function delSpouce($amka_dep){
+        $sql1 = "DELETE FROM syzygos WHERE AMKA_syzygou = ? ;";
+        $this->connect();
+        $res = $this->execute($sql1, [$amka_dep]);
+    }
+    
+    function delChild($amka_dep){
+        $sql1 = "DELETE FROM tekno WHERE AMKA_teknou = ? ;";
+        $this->connect();
+        $res = $this->execute($sql1, [$amka_dep]);
+    }
+    
+    
+    function isbirthday(){
+        $bool = false;
+        $sql = "SELECT DOB_Ergazom FROM ergazomenos";
+        $this->connect();
+        $res = $this->execute($sql, []);
+        $rows = $res->fetchAll();
+        foreach ($rows as $row){
+            if(date("d m",strtotime($row['DOB_Ergazom'])) == date("d m")){
+                $bool = true;
+            }
+        }
+        return $bool;
+    }
+    
+    function birthday($ses_dob){
+        $sql = "SELECT ergazomenos.DOB_Ergazom, ergazomenos.Onoma_Ergazom, ergazomenos.Eponymo_ergazom, address_ergazomenou.odos , address_ergazomenou.arithmos, address_ergazomenou.polh, address_ergazomenou.zip_code FROM ergazomenos JOIN address_ergazomenou ON ergazomenos.kwd_ergazomenou = address_ergazomenou.kwd_ergazomenou_adr";
+        $this->connect();
+        $res = $this->execute($sql, []);
+        $rows = $res->fetchAll();
+        foreach ($rows as $row){
+            if(date("d m",strtotime($row['DOB_Ergazom'])) == date("d m")){
+                if( $row['DOB_Ergazom'] == $ses_dob){
+                    echo "<tr><td>:D :D :D   HAPPY BIRTHDAY TO YOU!!!   :D :D :D</td><td> You know where you live! </td></tr><tr><td></td></tr>";
+                }
+                else{
+                echo "<tr><td>".$row['Onoma_Ergazom']."  ".$row['Eponymo_ergazom']."</td><td>".$row['odos']."  ".$row['arithmos']." - ".$row['polh']." - ".$row['zip_code']."</td></tr><tr><td></td></tr>";
+                } 
+            }
+        }
+    }
+    
+    
 //------------------------------- PROJECT SPECIFIC FUNCTION DECLERATIONS AND CODING END HERE ------------------------------------------------    
 }//end of class Database
