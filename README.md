@@ -22,3 +22,5 @@ general_edit.php     ->  using the forms provided here data can be added/deleted
 target_edit.php      ->  provides search forms so that the user can target each table row or cell individually.
 
 logout.php           ->  logs the user out by session_unset and redirects in the login page (index.php) for a new user to log
+
+How to use : Copy the database code provided here in your Localhost, then open index.php and use any credentials needed from the credentials table in the Database.
